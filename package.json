@@ -5,17 +5,24 @@
   "type": "module",
   "main": "build/index.js",
   "scripts": {
-    "start": "cli watch",
-    "build": "cli build",
+    "start": "wshcmx watch",
+    "build": "wshcmx build",
     "lint": "eslint src"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "websoft",
+    "webtutor",
+    "webtutor-api",
+    "wxhcmx",
+    "wxhcmx-api",
+    "wt"
+  ],
+  "author": "umbrik",
+  "license": "MIT",
   "devDependencies": {
-    "@wshcmx/cli": "^1.5.0",
-    "@wshcmx/types": "^10.0.0",
-    "eslint": "^9.17.0",
-    "typescript-eslint": "^8.19.1"
+    "@wshcmx/cli": "^2.0.0-rc.1",
+    "@wshcmx/types": "^11.0.0-rc.1",
+    "eslint": "^9.22.0",
+    "typescript-eslint": "^8.26.1"
   }
 }
