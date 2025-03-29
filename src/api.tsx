@@ -1,4 +1,5 @@
 import { wshcmx } from "./index";
+import { ControllerLibrary } from "./utils/router";
 
 export function handle(req: Request, res: Response) {
   const route = wshcmx.utils.router.getRoute(req.UrlPath, req.Method);
@@ -25,7 +26,7 @@ export function handle(req: Request, res: Response) {
     }
   }
 
-  const handler = OpenCodeLib(route.GetOptProperty("url"));
+  const handler = OpenCodeLib<ControllerLibrary>(route.GetOptProperty("url"));
 
   let params;
 

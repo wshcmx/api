@@ -38,9 +38,11 @@ function createRouterRule() {
   alert(`Все запросы ${webRuleDocument.TopElem.url.Value} будут перенаправляться на ${webRuleDocument.TopElem.redirect_url.Value}`);
 }
 
-type ControllerLibrary = {
+export type ControllerLibrary = {
   functions(): Route[];
-};
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-explicit-any
+  [key: string]:(...args: any) => void;
+}
 
 export function init() {
   createRouterRule();
