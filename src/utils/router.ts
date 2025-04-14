@@ -1,4 +1,4 @@
-import { Route, wshcmx } from "index";
+import { Route, wshcmx } from "../index";
 
 export function getRoute(pattern: string, method: string) {
   pattern = StrReplaceOne(pattern, wshcmx.config.pattern, "");
@@ -9,19 +9,17 @@ export function getRoute(pattern: string, method: string) {
       return wshcmx.routes[i];
     }
   }
+
+  return null;
 }
 
 function createRouterRule() {
   const webRuleCode = `wshcmx_${wshcmx.config.pattern}`;
-  const query = ArrayOptFirstElem(tools.xquery<{ id: XmlElem<number> }>(`for $e in web_rules where $e/code = ${SqlLiteral(webRuleCode)} return $e`));
+  let webRuleDocument = tools.get_doc_by_key<WebRuleDocument>("web_rule", "code", webRuleCode);
 
-  let webRuleDocument;
-
-  if (query === undefined) {
+  if (webRuleDocument === null) {
     webRuleDocument = tools.new_doc_by_name<WebRuleDocument>("web_rule");
     webRuleDocument.BindToDb();
-  } else {
-    webRuleDocument = tools.open_doc<WebRuleDocument>(query.id.Value);
   }
 
   webRuleDocument.TopElem.code.Value = webRuleCode;
@@ -38,9 +36,11 @@ function createRouterRule() {
   alert(`Все запросы ${webRuleDocument.TopElem.url.Value} будут перенаправляться на ${webRuleDocument.TopElem.redirect_url.Value}`);
 }
 
-type ControllerLibrary = {
+export type ControllerLibrary = {
   functions(): Route[];
-};
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-explicit-any
+  [key: string]:(...args: any) => void;
+}
 
 export function init() {
   createRouterRule();

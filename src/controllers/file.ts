@@ -1,10 +1,10 @@
-import { wshcmx, Route } from "index";
+import { wshcmx, Route } from "../index";
 
 export function functions(): Route[] {
   return [{
     method: "GET",
     pattern: "/file",
-    callback: getFile,
+    callback: "getFile",
     access: "user",
     summary: "Получение файла",
     params: {
@@ -15,7 +15,7 @@ export function functions(): Route[] {
   }, {
     method: "PUT",
     pattern: "/file",
-    callback: uploadFile,
+    callback: "uploadFile",
     access: "user",
     summary: "Загрузка файлов",
     params: {

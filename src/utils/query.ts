@@ -1,4 +1,4 @@
-import { wshcmx } from "index";
+import { wshcmx } from "../index";
 
 export function exec<T>(command: string) {
   return ArraySelectAll(tools.xquery<T>(command));

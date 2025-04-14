@@ -1,4 +1,7 @@
+/// @html
+
 import { wshcmx } from "./index";
+import { ControllerLibrary } from "./utils/router";
 
 export function handle(req: Request, res: Response) {
   const route = wshcmx.utils.router.getRoute(req.UrlPath, req.Method);
@@ -25,7 +28,14 @@ export function handle(req: Request, res: Response) {
     }
   }
 
-  const handler = OpenCodeLib(route.GetOptProperty("url"));
+  const routeUrl = route.GetOptProperty("url");
+
+  if (routeUrl === undefined) {
+    wshcmx.utils.response.notFound(res, `В библиотеке отсутствует адрес обработчика по url ${req.UrlPath} для метод ${req.Method}]`);
+    return;
+  }
+
+  const handler = OpenCodeLib<ControllerLibrary>(routeUrl);
 
   let params;
 
@@ -38,7 +48,7 @@ export function handle(req: Request, res: Response) {
     return;
   }
 
-  CallObjectMethod(handler, String(route.callback), [req, res, params]);
+  CallObjectMethod(handler, route.callback, [req, res, params]);
 }
 
 Request.AddRespHeader("X-wshcmx", "true");

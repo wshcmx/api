@@ -1,10 +1,10 @@
-import { wshcmx, Route } from "index";
+import { wshcmx, Route } from "../index";
 
 export function functions(): Route[] {
   return [{
     method: "GET",
     pattern: "/position",
-    callback: getPosition,
+    callback: "getPosition",
     access: "user",
     params: {
       id: {
@@ -14,7 +14,7 @@ export function functions(): Route[] {
   }, {
     method: "GET",
     pattern: "/positions",
-    callback: getPositions,
+    callback: "getPositions",
     access: "user",
     params: {
       page: {

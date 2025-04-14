@@ -1,5 +1,5 @@
-import { wshcmx } from "index";
+import { wshcmx } from "../index";
 
-export function getDownloadFileUrl(objectId: number | undefined) {
+export function getDownloadFileUrl(objectId: number | null) {
   return wshcmx.utils.type.isUndef(objectId) ? null : `/download_file.html?file_id=${objectId}`;
 }

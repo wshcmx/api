@@ -1,16 +1,16 @@
-import { wshcmx, Route } from "index";
+import { wshcmx, Route } from "../index";
 
 export function functions(): Route[] {
   return [{
     method: "GET",
     pattern: "/collaborator/current",
-    callback: getCurrentUser,
+    callback: "getCurrentUser",
     access: "user",
     summary: "Получение данных по авторизованному пользователю"
   }, {
     method: "GET",
     pattern: "/collaborators",
-    callback: getCollaborators,
+    callback: "getCollaborators",
     access: "user",
     params: {
       page: {

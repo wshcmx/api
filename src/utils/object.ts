@@ -1,4 +1,4 @@
-import { wshcmx } from "index";
+import { wshcmx } from "../index";
 
 /**
  * Метод возвращает массив из перечисляемых свойств переданного объекта,

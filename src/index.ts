@@ -1,5 +1,3 @@
-/// @template namespace
-
 type Utils = {
   array: typeof import("./utils/array");
   assert: typeof import("./utils/assert");
@@ -44,14 +42,14 @@ export type RouteParameters = {
 export type Route = {
   method: "GET" | "POST" | "PUT";
   pattern: string;
-  callback: CallableFunction;
+  callback: string;
   url?: string;
   access: "user" | "application" | "both" | "anonymous" | "dev";
   params?: RouteParameters;
   summary?: string;
 };
 
-export type Config = {
+export type Config = typeof import("./config.json") & {
   env: "production" | "development";
   basepath: string;
   version: string;
@@ -77,26 +75,26 @@ export namespace wshcmx {
   export const supportedFilesExts = [".docx", ".doc", ".xlsx", ".xls", ".txt", ".zip"];
 
   export const utils: Utils = {
-    array: undefined,
-    assert: undefined,
-    config: undefined,
-    fs: undefined,
-    log: undefined,
-    object: undefined,
-    paginator: undefined,
-    passport: undefined,
-    query: undefined,
-    request: undefined,
-    response: undefined,
-    router: undefined,
-    type: undefined,
-    url: undefined,
-    validator: undefined
+    array: undefined!,
+    assert: undefined!,
+    config: undefined!,
+    fs: undefined!,
+    log: undefined!,
+    object: undefined!,
+    paginator: undefined!,
+    passport: undefined!,
+    query: undefined!,
+    request: undefined!,
+    response: undefined!,
+    router: undefined!,
+    type: undefined!,
+    url: undefined!,
+    validator: undefined!
   };
 
   export const services: Services = {
-    events: undefined,
-    file: undefined
+    events: undefined!,
+    file: undefined!
   };
 
   export function loadInternals(container: Utils | Services, url: string) {
@@ -106,14 +104,9 @@ export namespace wshcmx {
 
     for (let i = 0; i < files.length; i++) {
       fileName = FileName(UrlToFilePath(files[i])).split(".")[0];
-
-      container.SetProperty(
-        fileName,
-        OpenCodeLib(files[i])
-      );
-
+      container.SetProperty(fileName, OpenCodeLib(files[i]));
       // eslint-disable-next-line no-alert
-      alert(`${fileName} was successfully loaded as part of ${type}, hash is ${Md5Hex(LoadUrlData(files[i]))}`);
+      alert(`${fileName} был успешно загружен в ${type} - хэш "${Md5Hex(LoadUrlData(files[i]))}"`);
     }
   }
 
@@ -123,6 +116,6 @@ export namespace wshcmx {
     utils.config.init();
     utils.router.init();
     // eslint-disable-next-line no-alert
-    alert(`API is ready: ${config.pattern}`);
+    alert(`API готово. Для проверки API обратитесь по адресу: ${global_settings.settings.portal_base_url ?? "http://localhost"}${config.pattern}/v1/ping`);
   }
 }

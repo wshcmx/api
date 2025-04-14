@@ -1,29 +1,31 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
     "target": "ES5",
-    "module": "ES6",
-    "allowJs": true,
-    "outDir": "build",
-    "isolatedModules": true,
-    "moduleResolution": "node",
-    "strict": false,
-    "baseUrl": "src",
-    "noEmit": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "rootDir": "src",
+    "module": "Preserve",
+    "noLib": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
     "typeRoots": [
       "node_modules/@wshcmx/types/lib",
       "node_modules/@wshcmx/types/lib/xml"
     ],
-    "esModuleInterop": true,
-    "noLib": true
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "outDir": "build",
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "useUnknownInCatchVariables": true,
+    "noErrorTruncation": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "emitBOM": true
   },
   "include": [
-    "src/controllers/**/*",
-    "src/services/**/*",
-    "src/utils/**/*",
     "src/**/*"
   ]
 }

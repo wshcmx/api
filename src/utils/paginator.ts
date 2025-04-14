@@ -1,4 +1,4 @@
-import { wshcmx } from "index";
+import { wshcmx } from "../index";
 
 interface PaginatorItems<T> {
   total: number;

@@ -1,7 +1,11 @@
-import { wshcmx } from "index";
+import { wshcmx } from "../index";
 
 export function getDetails(eventId: number) {
   const eventDocument = tools.open_doc<EventDocument>(eventId);
+
+  if (eventDocument === undefined) {
+    throw new Error(`Мероприятия по id ${eventId} не найдено`);
+  }
 
   return {
     id: eventDocument.DocID,

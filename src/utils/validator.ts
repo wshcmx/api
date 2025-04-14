@@ -18,8 +18,8 @@ function normalizeScheme(scheme: RouteParameters) {
     schemeProperty.SetProperty("description", schemeProperty.GetOptProperty("description", null));
     schemeProperty.SetProperty("val", schemeProperty.GetOptProperty("val", null));
     schemeProperty.SetProperty("nullable", schemeProperty.GetOptProperty("nullable", false));
-    schemeProperty.SetProperty("min", schemeProperty.GetOptProperty("min", null));
-    schemeProperty.SetProperty("max", schemeProperty.GetOptProperty("max", null));
+    schemeProperty.SetProperty("min", schemeProperty.GetOptProperty("min"));
+    schemeProperty.SetProperty("max", schemeProperty.GetOptProperty("max"));
     schemeProperty.SetProperty("format", schemeProperty.GetOptProperty("format", null));
     schemeProperty.SetProperty("items", schemeProperty.GetOptProperty("items", null));
 
@@ -47,11 +47,11 @@ function convertParameterValue(key: string, parameter: ParsedParameter, scheme: 
     convertedValue = IsEmptyValue(value) ? value : Trim(tools_web.convert_xss(String(value)));
     const stringLength = StrCharCount(String(convertedValue));
 
-    if (min !== null && stringLength < min) {
+    if (min !== undefined && stringLength < min) {
       throw new Error(`Параметр ${key} должен быть минимум длины ${min}`);
     }
 
-    if (max !== null && stringLength > max) {
+    if (max !== undefined && stringLength > max) {
       throw new Error(`Параметр ${key} должен быть минимум длины ${max}`);
     }
 
@@ -59,11 +59,11 @@ function convertParameterValue(key: string, parameter: ParsedParameter, scheme: 
   } else if (type == "number") {
     convertedValue = scheme.format === "real" ? OptReal(value, null) : OptInt(value, null);
 
-    if (min !== null && convertedValue < min) {
+    if (min !== undefined && convertedValue !== null && convertedValue < min) {
       throw new Error(`Параметр ${key} должен быть не меньше ${min}`);
     }
 
-    if (max !== null && convertedValue > max) {
+    if (max !== undefined && convertedValue !== null && convertedValue > max) {
       throw new Error(`Параметр ${key} должен быть не больше ${max}`);
     }
 
