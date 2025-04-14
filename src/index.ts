@@ -116,8 +116,6 @@ export namespace wshcmx {
     utils.config.init();
     utils.router.init();
     // eslint-disable-next-line no-alert
-    alert(`API готово: ${config.pattern}`);
-    // eslint-disable-next-line no-alert
-    alert(`Для проверки API обратитесь по адресу:\n\t${""}${config.pattern}/v1/ping`);
+    alert(`API готово. Для проверки API обратитесь по адресу: ${global_settings.settings.portal_base_url ?? "http://localhost"}${config.pattern}/v1/ping`);
   }
 }
