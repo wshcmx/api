@@ -104,14 +104,9 @@ export namespace wshcmx {
 
     for (let i = 0; i < files.length; i++) {
       fileName = FileName(UrlToFilePath(files[i])).split(".")[0];
-
-      container.SetProperty(
-        fileName,
-        OpenCodeLib(files[i])
-      );
-
+      container.SetProperty(fileName, OpenCodeLib(files[i]));
       // eslint-disable-next-line no-alert
-      alert(`${fileName} was successfully loaded as part of ${type}, hash is ${Md5Hex(LoadUrlData(files[i]))}`);
+      alert(`${fileName} был успешно загружен в ${type} - хэш "${Md5Hex(LoadUrlData(files[i]))}"`);
     }
   }
 

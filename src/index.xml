@@ -2,12 +2,12 @@
 <SPXML-INLINE-FORM>
 <OnInit PROPERTY="1" EXPR="
     try {
-      alert('Registering wshcmx API');
+      alert('Регистрация wshcmx API');
       RegisterCodeLibrary('./index.bs');
       wshcmx.init();
-      alert('wshcmx API successfully registered');
+      alert('wshcmx API успешно зарегистрирован');
     } catch (error) {
-      alert('wshcmx API registration fail. ' + error);
+      alert('wshcmx API не зарегистрирован. Ошибка: ' + error);
     }
 "/>
 </SPXML-INLINE-FORM>
