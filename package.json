@@ -20,7 +20,7 @@
   "author": "umbrik",
   "license": "MIT",
   "devDependencies": {
-    "@wshcmx/cli": "^2.0.0-rc.1",
+    "@wshcmx/cli": "^2.0.3",
     "@wshcmx/types": "github:wshcmx/types",
     "eslint": "^9.22.0",
     "typescript-eslint": "^8.26.1"
