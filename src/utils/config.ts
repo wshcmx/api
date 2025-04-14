@@ -1,7 +1,7 @@
 import { wshcmx } from "../index";
 
 export function init() {
-  const configUrl = "./../config.json";
+  const configUrl = AbsoluteUrl("./../config.json");
 
   if (!FilePathExists(UrlToFilePath(configUrl))) {
     const error = `Config doesn't exist by path ${configUrl}`;
@@ -10,9 +10,11 @@ export function init() {
     throw new Error(error);
   }
 
-  wshcmx.config = tools.read_object(LoadUrlData(configUrl));
+  wshcmx.config = tools.read_object(LoadUrlText(configUrl, {
+    DetectContentCharset: true
+  }));
   wshcmx.config.basepath = UrlToFilePath("./..").replace("\\", "/").split("/wt/web/")[1];
 
   // eslint-disable-next-line no-alert
-  alert(`Config loaded:\n${tools.object_to_text(wshcmx.config, "json")}`);
+  alert(`Config "${configUrl}" loaded:\n${tools.object_to_text(wshcmx.config, "json")}`);
 }

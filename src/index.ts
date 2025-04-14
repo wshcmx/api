@@ -49,7 +49,7 @@ export type Route = {
   summary?: string;
 };
 
-export type Config = {
+export type Config = typeof import("./config.json") & {
   env: "production" | "development";
   basepath: string;
   version: string;
@@ -75,26 +75,26 @@ export namespace wshcmx {
   export const supportedFilesExts = [".docx", ".doc", ".xlsx", ".xls", ".txt", ".zip"];
 
   export const utils: Utils = {
-    array: undefined,
-    assert: undefined,
-    config: undefined,
-    fs: undefined,
-    log: undefined,
-    object: undefined,
-    paginator: undefined,
-    passport: undefined,
-    query: undefined,
-    request: undefined,
-    response: undefined,
-    router: undefined,
-    type: undefined,
-    url: undefined,
-    validator: undefined
+    array: undefined!,
+    assert: undefined!,
+    config: undefined!,
+    fs: undefined!,
+    log: undefined!,
+    object: undefined!,
+    paginator: undefined!,
+    passport: undefined!,
+    query: undefined!,
+    request: undefined!,
+    response: undefined!,
+    router: undefined!,
+    type: undefined!,
+    url: undefined!,
+    validator: undefined!
   };
 
   export const services: Services = {
-    events: undefined,
-    file: undefined
+    events: undefined!,
+    file: undefined!
   };
 
   export function loadInternals(container: Utils | Services, url: string) {
@@ -121,6 +121,8 @@ export namespace wshcmx {
     utils.config.init();
     utils.router.init();
     // eslint-disable-next-line no-alert
-    alert(`API is ready: ${config.pattern}`);
+    alert(`API готово: ${config.pattern}`);
+    // eslint-disable-next-line no-alert
+    alert(`Для проверки API обратитесь по адресу:\n\t${""}${config.pattern}/v1/ping`);
   }
 }

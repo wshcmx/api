@@ -85,7 +85,7 @@ export function getCollaborator(params: HandlerParams, Request: Request) {
 }
 ```
 
-В результате вышеописанных действий, пользователь сможет получить свой идентификатор, обратившись по адресу `https://<server_address>/api/v1/collaborators/collaborator`, при этом - вам не нужно думать об аутентификации, так как этот процесс зашит в ядро оркестратора.
+В результате вышеописанных действий, пользователь сможет получить свой идентификатор, обратившись по адресу `https://<server_address>/_api/v1/collaborators/collaborator`, при этом - вам не нужно думать об аутентификации, так как этот процесс зашит в ядро оркестратора.
 
 **Результаты выполнения функций в контроллерах необходимо оборачивать в специальные функции из библиотеки** `data.utils.repsponse`, тогда ваши ответы будут иметь общий вид.
 
@@ -207,14 +207,14 @@ log was successfully loaded as part of utils, hash is C0A85788A3832253EEEBE74D6A
 request was successfully loaded as part of utils, hash is CF0AD736861E2CB51F8CAD2330E18607
 type was successfully loaded as part of utils, hash is 45508C2BFC6C5B14B7D409B089356D0E
 events was successfully loaded as part of services, hash is BC355042ED2BBDAA234AFEABED752DA1
-Config loaded: {"env":"development","version":"9.9.9","api":{"pattern":"/api/v1","basepath":"x-local://wt/web/wshcmx"},"stderr":true}
+Config loaded: {"env":"development","version":"9.9.9","api":{"pattern":"/_api/v1","basepath":"x-local://wt/web/wshcmx"},"stderr":true}
 Web rule successfully updated 7257866394331456688
-API is ready: /api/v1
+API готово: /_api/v1
 wshcmx successfully registered
 External API Lib: x-local://wt/web/wshcmx/index.xml. Loaded.
 ```
 
-Если все библиотеки зарегистрировались успешно, вы можете проверить доступ к API по адресу `https://<server_address>/api/v1/ping`.
+Если все библиотеки зарегистрировались успешно, вы можете проверить доступ к API по адресу `https://<server_address>/_api/v1/ping`.
 
 ## Ограничения и условности
 

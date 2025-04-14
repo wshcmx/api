@@ -9,14 +9,20 @@
       "node_modules/@wshcmx/types/lib",
       "node_modules/@wshcmx/types/lib/xml"
     ],
+    "resolveJsonModule": true,
     "noImplicitAny": true,
     "allowJs": true,
     "outDir": "build",
     "isolatedModules": true,
     "moduleResolution": "node",
-    "strict": false,
+    "strict": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
+    "useUnknownInCatchVariables": true,
+    "noErrorTruncation": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
     "emitBOM": true
   },
   "include": [

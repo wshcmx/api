@@ -4,18 +4,18 @@ function json<T>(
   res: Response,
   payload: T,
   status = 200,
-  message: string = null
+  message: unknown = null
 ) {
   res.ContentType = "application/json; charset=utf-8;";
 
   if (status !== 200) {
-    res.SetRespStatus(status, message);
+    res.SetRespStatus(status, String(message));
   }
 
   res.Write((wshcmx.utils.type.isPrimitive(payload) ? payload : tools.object_to_text(payload, "json")) as string);
 }
 
-export function abort(res: Response, message: Error | string, status: number = 500) {
+export function abort(res: Response, message: unknown, status: number = 500) {
   message = (
     wshcmx.utils.type.isError(message) && wshcmx.config.env != "development"
       ? message.message
@@ -66,11 +66,19 @@ export function unsupportedMediaType(res: Response, message: string = "Данн�
   abort(res, message, 415);
 }
 
-export function unprocessableContent(res: Response, message: string) {
+export function unprocessableContent(res: Response, message: unknown) {
   abort(res, message, 422);
 }
 
 export function binary(res: Response, file: ResourceDocument) {
+  if (!file.TopElem.file_source.HasValue || file.TopElem.file_source.Value === null) {
+    return;
+  }
+
+  if (!file.TopElem.file_url.HasValue || file.TopElem.file_url.Value === null) {
+    return;
+  }
+
   const binary = new Binary();
   const url = tools.file_source_get_file_to_save_url(
     file.TopElem.file_source.Value,

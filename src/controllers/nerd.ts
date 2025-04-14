@@ -32,5 +32,5 @@ export function getRoutes(_req: Request, res: Response) {
 
 export function checkAppAuth(req: Request, res: Response) {
   const xAppId = wshcmx.utils.request.getHeader(req.Header, "x-app-id");
-  return wshcmx.utils.response.ok(res, wshcmx.utils.passport.authenticateApplication(req, xAppId));
+  return wshcmx.utils.response.ok(res, wshcmx.utils.passport.authenticateApplication(req, xAppId!));
 }
