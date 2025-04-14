@@ -1,7 +1,7 @@
 import { wshcmx } from "../index";
 
 export function init() {
-  const configUrl = AbsoluteUrl("./../config.json", ".");
+  const configUrl = AbsoluteUrl("./../config.json");
 
   if (!FilePathExists(UrlToFilePath(configUrl))) {
     const error = `Конфиг не существует по пути "${configUrl}"`;
