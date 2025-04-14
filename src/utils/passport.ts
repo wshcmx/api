@@ -9,7 +9,7 @@ export function authenticateUser(req: Request): Authentication | null {
   const userInit = tools_web.user_init(req, req.Query);
 
   if (!userInit.access) {
-    wshcmx.utils.log.info(`Сесстя ${wshcmx.utils.request.getHeader(req.Header, "SessionID")} не авторизована в связи с ${userInit.error_text}`, "passport");
+    wshcmx.utils.log.info(`Сессия ${wshcmx.utils.request.getHeader(req.Header, "SessionID")} не авторизована в связи с ${userInit.error_text}`, "passport");
     return null;
   }
 
